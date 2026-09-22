@@ -1,12 +1,10 @@
 /* ============================================================
-   CHART SCREEN — Biểu đồ 7 ngày gần nhất
-   Dữ liệu từ: localStorage (đã sync từ Sheet khi login)
+   CHART SCREEN — Biểu đồ 7 ngày + ĐƯỜNG LINE nối các điểm
    ============================================================ */
 
 function showResultChart() {
   goTo('screen-chart');
   
-  // Khi mở biểu đồ → sync lại từ server (đảm bảo mới nhất)
   const phone = getStudentPhone();
   if (phone) {
     syncHistoryFromServer().then(() => {
@@ -39,7 +37,7 @@ function renderChart() {
   const chartW = W - P.left - P.right;
   const chartH = H - P.top - P.bottom;
   
-  // ⭐ LẤY 7 NGÀY GẦN NHẤT (thay vì 10)
+  // 7 ngày gần nhất
   const today = new Date();
   const days = [];
   for (let i = 6; i >= 0; i--) {
@@ -54,7 +52,7 @@ function renderChart() {
     });
   }
   
-  // Vẽ nền
+  // Nền
   ctx.fillStyle = '#fafafa';
   ctx.fillRect(P.left, P.top, chartW, chartH);
   
@@ -67,14 +65,12 @@ function renderChart() {
   const yValues = [0, 20, 40, 60, 80, 100];
   yValues.forEach(val => {
     const y = P.top + chartH - (val / 100) * chartH;
-    
     ctx.beginPath();
     ctx.moveTo(P.left, y);
     ctx.lineTo(P.left + chartW, y);
     ctx.strokeStyle = val === 0 ? '#9ca3af' : '#f0f0f0';
     ctx.lineWidth = 1;
     ctx.stroke();
-    
     ctx.fillStyle = '#666';
     ctx.fillText(val + '%', P.left - 8, y);
   });
@@ -87,20 +83,17 @@ function renderChart() {
   
   days.forEach((day, i) => {
     const x = P.left + i * stepX;
-    
     ctx.beginPath();
     ctx.moveTo(x, P.top + chartH);
     ctx.lineTo(x, P.top + chartH + 5);
     ctx.strokeStyle = '#9ca3af';
     ctx.lineWidth = 1;
     ctx.stroke();
-    
     ctx.fillStyle = '#666';
     ctx.font = '10px Segoe UI';
     ctx.fillText(day.label, x, P.top + chartH + 10);
   });
   
-  // Label trục X
   ctx.font = 'bold 12px Segoe UI';
   ctx.fillStyle = '#333';
   ctx.textAlign = 'center';
@@ -109,15 +102,11 @@ function renderChart() {
   
   // ===== DỮ LIỆU =====
   const history = getHistory();
-  
-  // Lọc chỉ lấy 7 ngày gần nhất + bỏ Flashcard
   const cutoff = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
   const validHistory = history.filter(rec => {
     if (!rec.date) return false;
     const recDate = new Date(rec.date);
     if (recDate < cutoff) return false;
-    const mode = String(rec.mode || '');
-    if (mode.includes('Flash')) return false;
     return true;
   });
   
@@ -133,7 +122,7 @@ function renderChart() {
     return;
   }
   
-  // Group theo (ngày, mode)
+  // ===== GROUP theo (ngày, mode) =====
   const grouped = {};
   validHistory.forEach(rec => {
     const recDate = new Date(rec.date);
@@ -148,33 +137,68 @@ function renderChart() {
     grouped[groupKey].values.push(rec.percent);
   });
   
-  // Vẽ điểm
+  // ===== GROUP LẠI theo MODE để vẽ đường line =====
+  const byMode = {};
   Object.values(grouped).forEach(group => {
+    if (!byMode[group.mode]) byMode[group.mode] = [];
+    
     const dayIdx = days.findIndex(d => d.key === group.dayKey);
     if (dayIdx < 0) return;
     
-    const x = P.left + dayIdx * stepX;
     const avg = Math.round(group.values.reduce((a,b) => a + b, 0) / group.values.length);
-    const y = P.top + chartH - (avg / 100) * chartH;
+    byMode[group.mode].push({
+      dayIdx: dayIdx,
+      x: P.left + dayIdx * stepX,
+      y: P.top + chartH - (avg / 100) * chartH,
+      percent: avg
+    });
+  });
+  
+  // ===== VẼ ĐƯỜNG LINE cho mỗi mode =====
+  Object.keys(byMode).forEach(mode => {
+    const points = byMode[mode].sort((a, b) => a.dayIdx - b.dayIdx);
+    if (points.length < 2) return;
     
-    const color = getModeColor(group.mode);
-    const symbol = getModeSymbol(group.mode);
+    const color = getModeColor(mode);
     
     ctx.beginPath();
-    ctx.arc(x, y, 11, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(255,255,255,0.9)';
-    ctx.fill();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1.5;
+    ctx.globalAlpha = 0.6;   // Mờ nhẹ cho đẹp
+    ctx.moveTo(points[0].x, points[0].y);
     
-    ctx.font = 'bold 20px Segoe UI';
-    ctx.fillStyle = color;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(symbol, x, y);
+    for (let i = 1; i < points.length; i++) {
+      ctx.lineTo(points[i].x, points[i].y);
+    }
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+  });
+  
+  // ===== VẼ ĐIỂM + KÝ HIỆU + % =====
+  Object.keys(byMode).forEach(mode => {
+    const color = getModeColor(mode);
+    const symbol = getModeSymbol(mode);
     
-    ctx.font = 'bold 10px Segoe UI';
-    ctx.fillStyle = color;
-    ctx.textBaseline = 'bottom';
-    ctx.fillText(avg + '%', x, y - 14);
+    byMode[mode].forEach(p => {
+      // Vòng tròn nền trắng
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 11, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,255,255,0.9)';
+      ctx.fill();
+      
+      // Ký hiệu
+      ctx.font = 'bold 20px Segoe UI';
+      ctx.fillStyle = color;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(symbol, p.x, p.y);
+      
+      // Label %
+      ctx.font = 'bold 10px Segoe UI';
+      ctx.fillStyle = color;
+      ctx.textBaseline = 'bottom';
+      ctx.fillText(p.percent + '%', p.x, p.y - 14);
+    });
   });
   
   renderLegend(validHistory);
@@ -201,7 +225,6 @@ function renderLegend(history) {
   }).join('');
 }
 
-// Vẽ lại khi resize
 window.addEventListener('resize', () => {
   if ($('screen-chart').classList.contains('active')) {
     clearTimeout(window._chartResizeTimer);
