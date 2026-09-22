@@ -1,48 +1,39 @@
 /* ============================================================
-   HISTORY — Lưu lịch sử + Gửi lên Google Sheets
+   HISTORY — Login SĐT + Load lịch sử từ Sheet + Gửi điểm
+   SĐT là ID duy nhất của học viên
    ============================================================ */
 
 const HISTORY_KEY = 'superbrain_history';
-
-// ⭐ URL Google Apps Script Web App
 const API_URL = 'https://script.google.com/macros/s/AKfycbw2zViZ1sMm8lTBX4pMbT23dQ7uTIkWB9LcSe_oUlF_LBEkKR7atQX3s9bWaDmT-QuH9w/exec';
 
-// ============ ĐỌC / GHI LỊCH SỬ ============
+// ============ LOCAL STORAGE ============
 function getHistory() {
   try {
     const raw = localStorage.getItem(HISTORY_KEY);
     return raw ? JSON.parse(raw) : [];
-  } catch (e) {
-    console.warn('Lỗi đọc lịch sử:', e);
-    return [];
-  }
+  } catch (e) { return []; }
 }
 
 function saveHistory(arr) {
   try {
     localStorage.setItem(HISTORY_KEY, JSON.stringify(arr));
-  } catch (e) {
-    console.warn('Lỗi lưu lịch sử:', e);
-  }
+  } catch (e) {}
 }
 
 // ============ THÊM BẢN GHI MỚI ============
 function addHistoryRecord(data) {
-  // 1. Lưu vào localStorage
+  data.phone = getStudentPhone();   // SĐT là ID
+  
   const list = getHistory();
   list.push(data);
   saveHistory(list);
   
-  // 2. Gửi lên Google Sheets
   sendToGoogleSheets(data);
 }
 
-// ============ GỬI LÊN GOOGLE SHEETS ============
+// ============ GỬI ĐIỂM LÊN SHEET ============
 function sendToGoogleSheets(data) {
-  if (!API_URL || API_URL.includes('AKfycb...')) {
-    console.warn('⚠️ Chưa cấu hình API_URL');
-    return;
-  }
+  if (!API_URL) return;
   
   const payload = {
     name: getStudentName(),
@@ -52,57 +43,119 @@ function sendToGoogleSheets(data) {
     total: data.total,
     percent: data.percent,
     date: data.date,
-    className: getStudentClass()
+    className: getStudentClass(),
+    phone: getStudentPhone()
   };
   
-  console.log('📤 Đang gửi lên Google Sheets:', payload);
+  console.log('📤 Gửi điểm:', payload);
   
   fetch(API_URL, {
     method: 'POST',
     mode: 'no-cors',
-    headers: {
-      'Content-Type': 'application/json'
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
   })
-  .then(() => {
-    console.log('✅ Đã gửi điểm lên Google Sheets');
+  .then(() => console.log('✅ Đã gửi'))
+  .catch(err => console.warn('⚠️ Lỗi gửi:', err));
+}
+
+// ============ LOGIN BẰNG SĐT ============
+function loginWithPhone(phone) {
+  if (!API_URL) return Promise.reject('Chưa cấu hình API_URL');
+  
+  return fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ action: 'login', phone: phone })
   })
-  .catch(err => {
-    console.warn('⚠️ Không gửi được (có thể do mạng):', err);
+  .then(res => res.json())
+  .then(data => {
+    if (data.status === 'success') {
+      // Xóa dữ liệu cũ
+      localStorage.removeItem('superbrain_student_name');
+      localStorage.removeItem('superbrain_student_class');
+      localStorage.removeItem('superbrain_history');
+      
+      // Lưu thông tin mới — SĐT là ID
+      localStorage.setItem('superbrain_phone', data.phone);
+      localStorage.setItem('superbrain_student_name', data.name);
+      localStorage.setItem('superbrain_student_class', data.className || '');
+      
+      return data;
+    } else {
+      throw new Error(data.message || 'Đăng nhập thất bại');
+    }
   });
 }
 
-// ============ QUẢN LÝ TÊN HỌC VIÊN ============
-function getStudentName() {
-  try {
-    return localStorage.getItem('superbrain_student_name') || 'Không tên';
-  } catch (e) {
-    return 'Không tên';
-  }
+// ============ LẤY LỊCH SỬ TỪ SERVER ============
+function fetchHistoryFromServer(phone) {
+  if (!API_URL) return Promise.resolve([]);
+  
+  console.log('📥 Đang tải lịch sử cho SĐT:', phone);
+  
+  return fetch(API_URL + '?action=getHistory&phone=' + encodeURIComponent(phone))
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === 'success') {
+        console.log('✅ Nhận', data.history.length, 'bản ghi');
+        return data.history || [];
+      }
+      return [];
+    })
+    .catch(err => {
+      console.warn('⚠️ Lỗi tải lịch sử:', err);
+      return [];
+    });
 }
 
-function setStudentName(name) {
-  try {
-    localStorage.setItem('superbrain_student_name', name);
-  } catch (e) {}
+// ============ ĐỒNG BỘ LỊCH SỬ ============
+function syncHistoryFromServer() {
+  const phone = getStudentPhone();
+  if (!phone) return Promise.resolve();
+  
+  return fetchHistoryFromServer(phone)
+    .then(serverHistory => {
+      if (serverHistory.length === 0) {
+        console.log('ℹ️ Không có lịch sử cũ');
+        return;
+      }
+      
+      // Merge với localStorage
+      const local = getHistory();
+      const merged = [...local];
+      
+      serverHistory.forEach(item => {
+        const exists = merged.some(x => 
+          x.date === item.date && 
+          x.mode === item.mode && 
+          x.score === item.score
+        );
+        if (!exists) merged.push(item);
+      });
+      
+      saveHistory(merged);
+      console.log('✅ Đã đồng bộ. Tổng:', merged.length);
+    });
+}
+
+// ============ QUẢN LÝ HỌC VIÊN ============
+function getStudentName() {
+  try { return localStorage.getItem('superbrain_student_name') || 'Không tên'; } 
+  catch (e) { return 'Không tên'; }
 }
 
 function getStudentClass() {
-  try {
-    return localStorage.getItem('superbrain_student_class') || '';
-  } catch (e) {
-    return '';
-  }
+  try { return localStorage.getItem('superbrain_student_class') || ''; } 
+  catch (e) { return ''; }
 }
 
-function setStudentClass(cls) {
-  try {
-    localStorage.setItem('superbrain_student_class', cls);
-  } catch (e) {}
+function getStudentPhone() {
+  try { return localStorage.getItem('superbrain_phone') || ''; } 
+  catch (e) { return ''; }
 }
 
-// ============ KÝ HIỆU + MÀU SẮC CHO BIỂU ĐỒ ============
+// ============ KÝ HIỆU + MÀU ============
 const MODE_SYMBOLS = {
   'fm-basic': '◆', 'fm-lb-plus': '✚', 'fm-lb-minus': '▬',
   'fm-bb-plus': '■', 'fm-bb-minus': '★', 'fm-review': '▲',
