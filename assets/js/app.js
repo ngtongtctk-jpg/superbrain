@@ -1,14 +1,15 @@
 /* ============================================================
-   APP — Entry point
+   APP — Entry point + Login SĐT + Sync lịch sử
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('🚀 SUPERBRAIN đang khởi động...');
+  console.log('🚀 SUPERBRAIN khởi động...');
   
   initSound();
   updateAppSize('screen-home');
-  checkStudentName();
+  checkLoginStatus();
   
+  // Gắn sự kiện
   const btnCheck = $('btnCheck');
   if (btnCheck) btnCheck.addEventListener('click', checkAnswer);
   
@@ -46,107 +47,89 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  const nameInput = $('studentNameInput');
-  if (nameInput) {
-    nameInput.addEventListener('keypress', e => {
-      if (e.key === 'Enter') saveStudentInfo();
+  const phoneInput = $('studentPhoneInput');
+  if (phoneInput) {
+    phoneInput.addEventListener('keypress', e => {
+      if (e.key === 'Enter') doLogin();
     });
   }
   
-  const classInput = $('studentClassInput');
-  if (classInput) {
-    classInput.addEventListener('keypress', e => {
-      if (e.key === 'Enter') saveStudentInfo();
-    });
-  }
-  
-  console.log('✅ SUPERBRAIN ready!');
+  console.log('✅ Ready!');
 });
 
-// ============ KIỂM TRA TÊN HỌC VIÊN ============
-function checkStudentName() {
+// ============ KIỂM TRA ĐĂNG NHẬP ============
+function checkLoginStatus() {
   const overlay = $('nameOverlay');
-  const nameInput = $('studentNameInput');
-  const classInput = $('studentClassInput');
+  const phone = getStudentPhone();
   
-  if (!overlay) {
-    console.warn('⚠️ Không tìm thấy overlay nameOverlay');
-    return;
-  }
-  
-  let name = '';
-  try {
-    name = localStorage.getItem('superbrain_student_name') || '';
-  } catch (e) {
-    name = '';
-  }
-  
-  console.log('👤 Tên đã lưu:', name || '(chưa có)');
-  
-  if (!name || name === 'Không tên' || name.trim() === '') {
-    console.log('📝 Chưa có tên → Hiện overlay nhập tên');
+  if (phone && phone.length >= 9) {
+    // Đã đăng nhập
+    overlay.classList.add('hidden');
+    overlay.style.display = 'none';
+    updateStudentInfoUI();
+    
+    // ⭐ SYNC LỊCH SỬ TỪ SERVER KHI VÀO APP
+    console.log('🔄 Đồng bộ lịch sử khi vào app...');
+    syncHistoryFromServer();
+  } else {
+    // Chưa đăng nhập → hiện overlay
     overlay.classList.remove('hidden');
     overlay.style.display = 'flex';
-    setTimeout(() => {
-      if (nameInput) nameInput.focus();
-    }, 100);
-  } else {
-    console.log('✅ Đã có tên → Ẩn overlay');
-    overlay.classList.add('hidden');
-    overlay.style.display = 'none';
-    
-    if (nameInput) nameInput.value = name;
-    let cls = '';
-    try {
-      cls = localStorage.getItem('superbrain_student_class') || '';
-    } catch (e) {}
-    if (classInput) classInput.value = cls;
-    
-    updateStudentInfoUI();
+    setTimeout(() => $('studentPhoneInput')?.focus(), 100);
   }
 }
 
-// ============ LƯU THÔNG TIN HỌC VIÊN ============
-function saveStudentInfo() {
-  const nameInput = $('studentNameInput');
-  const classInput = $('studentClassInput');
+// ============ ĐĂNG NHẬP ============
+function doLogin() {
+  const phoneInput = $('studentPhoneInput');
+  const errorEl = $('loginError');
+  const btn = $('btnLogin');
   
-  const name = nameInput ? nameInput.value.trim() : '';
-  const cls = classInput ? classInput.value.trim() : '';
+  const phone = phoneInput ? phoneInput.value.trim().replace(/[\s\-\.]/g, '') : '';
   
-  console.log('💾 Lưu tên:', name, '| Lớp:', cls);
-  
-  if (!name) {
-    alert('Vui lòng nhập họ tên!');
-    if (nameInput) nameInput.focus();
+  if (!phone || phone.length < 9) {
+    errorEl.textContent = '⚠️ Vui lòng nhập SĐT hợp lệ';
+    errorEl.style.display = 'block';
     return;
   }
   
-  try {
-    localStorage.setItem('superbrain_student_name', name);
-    localStorage.setItem('superbrain_student_class', cls);
-  } catch (e) {
-    console.warn('Không lưu được vào localStorage:', e);
-  }
+  errorEl.style.display = 'none';
+  btn.textContent = 'ĐANG ĐĂNG NHẬP...';
+  btn.disabled = true;
   
-  const overlay = $('nameOverlay');
-  if (overlay) {
-    overlay.classList.add('hidden');
-    overlay.style.display = 'none';
-  }
-  
-  updateStudentInfoUI();
-  
-  console.log('✅ Đã lưu học viên:', name, cls ? '(Lớp ' + cls + ')' : '');
+  loginWithPhone(phone)
+    .then(data => {
+      console.log('✅ Đăng nhập:', data);
+      
+      // Ẩn overlay
+      const overlay = $('nameOverlay');
+      overlay.classList.add('hidden');
+      overlay.style.display = 'none';
+      
+      updateStudentInfoUI();
+      
+      // ⭐ SYNC LỊCH SỬ NGAY SAU KHI LOGIN
+      console.log('🔄 Đồng bộ lịch sử sau login...');
+      return syncHistoryFromServer();
+    })
+    .then(() => {
+      console.log('🎉 Đồng bộ xong, sẵn sàng sử dụng');
+    })
+    .catch(err => {
+      console.error('❌ Lỗi:', err);
+      errorEl.textContent = '❌ ' + (err.message || 'SĐT chưa được đăng ký');
+      errorEl.style.display = 'block';
+    })
+    .finally(() => {
+      btn.textContent = 'ĐĂNG NHẬP';
+      btn.disabled = false;
+    });
 }
 
-// ============ CẬP NHẬT UI HIỂN THỊ TÊN ============
+// ============ CẬP NHẬT UI ============
 function updateStudentInfoUI() {
-  let name = '', cls = '';
-  try {
-    name = localStorage.getItem('superbrain_student_name') || '';
-    cls = localStorage.getItem('superbrain_student_class') || '';
-  } catch (e) {}
+  const name = getStudentName();
+  const cls = getStudentClass();
   
   const subtitle = document.querySelector('.subtitle');
   if (subtitle) {
@@ -158,27 +141,18 @@ function updateStudentInfoUI() {
   }
 }
 
-// ============ NÚT THOÁT — Xóa dữ liệu học viên ============
+// ============ NÚT THOÁT ============
 function confirmLogout() {
   const name = getStudentName();
-  const msg = `Bạn có chắc muốn thoát?\n\n` +
-              `Tên học viên: ${name}\n\n` +
-              `⚠️ LƯU Ý: Khi thoát, dữ liệu trên máy sẽ bị XÓA.\n` +
-              `Điểm đã gửi lên Google Sheet sẽ được GIỮ LẠI.`;
-  
-  if (!confirm(msg)) return;
+  if (!confirm(`Bạn có chắc muốn thoát?\n\nTên: ${name}\n\nDữ liệu trên máy sẽ bị XÓA.\nĐiểm trên Sheet vẫn GIỮ LẠI.`)) return;
   
   try {
+    localStorage.removeItem('superbrain_phone');
     localStorage.removeItem('superbrain_student_name');
     localStorage.removeItem('superbrain_student_class');
     localStorage.removeItem('superbrain_history');
     localStorage.removeItem('superbrain_sound_enabled');
-  } catch (e) {
-    console.warn('Lỗi xóa localStorage:', e);
-  }
+  } catch (e) {}
   
-  console.log('🚪 Đã đăng xuất. Xóa toàn bộ dữ liệu học viên.');
-  
-  // Reload trang
   location.reload();
 }
