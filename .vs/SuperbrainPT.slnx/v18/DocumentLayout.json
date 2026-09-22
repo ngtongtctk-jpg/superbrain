@@ -1,0 +1,327 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\File\\app superbrain\\SuperbrainPT\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ABFE1AC4-474B-45E5-67EE-0A58CB0A352A}|js{ABFE1AC4-474B-45E5-67EE-0A58CB0A352A}|D:\\File\\app superbrain\\SuperbrainPT\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{ABFE1AC4-474B-45E5-67EE-0A58CB0A352A}|js{ABFE1AC4-474B-45E5-67EE-0A58CB0A352A}|solutionrelative:app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B3DEABC7-E864-1C06-D96D-FA1041009525}|core{B3DEABC7-E864-1C06-D96D-FA1041009525}|D:\\File\\app superbrain\\SuperbrainPT\\generator.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B3DEABC7-E864-1C06-D96D-FA1041009525}|core{B3DEABC7-E864-1C06-D96D-FA1041009525}|solutionrelative:generator.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6411CDF6-C4EB-675B-BF7E-4C7ABCAB8DAA}|modes{6411CDF6-C4EB-675B-BF7E-4C7ABCAB8DAA}|D:\\File\\app superbrain\\SuperbrainPT\\fingermath.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{6411CDF6-C4EB-675B-BF7E-4C7ABCAB8DAA}|modes{6411CDF6-C4EB-675B-BF7E-4C7ABCAB8DAA}|solutionrelative:fingermath.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6411CDF6-C4EB-675B-BF7E-4C7ABCAB8DAA}|modes{6411CDF6-C4EB-675B-BF7E-4C7ABCAB8DAA}|D:\\File\\app superbrain\\SuperbrainPT\\soroban.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{6411CDF6-C4EB-675B-BF7E-4C7ABCAB8DAA}|modes{6411CDF6-C4EB-675B-BF7E-4C7ABCAB8DAA}|solutionrelative:soroban.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A84877A-6AB4-E422-F490-6011EA30690A}|screens{0A84877A-6AB4-E422-F490-6011EA30690A}|D:\\File\\app superbrain\\SuperbrainPT\\navigation.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{0A84877A-6AB4-E422-F490-6011EA30690A}|screens{0A84877A-6AB4-E422-F490-6011EA30690A}|solutionrelative:navigation.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A84877A-6AB4-E422-F490-6011EA30690A}|screens{0A84877A-6AB4-E422-F490-6011EA30690A}|D:\\File\\app superbrain\\SuperbrainPT\\configScreen.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{0A84877A-6AB4-E422-F490-6011EA30690A}|screens{0A84877A-6AB4-E422-F490-6011EA30690A}|solutionrelative:configScreen.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A84877A-6AB4-E422-F490-6011EA30690A}|screens{0A84877A-6AB4-E422-F490-6011EA30690A}|D:\\File\\app superbrain\\SuperbrainPT\\gameScreen.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{0A84877A-6AB4-E422-F490-6011EA30690A}|screens{0A84877A-6AB4-E422-F490-6011EA30690A}|solutionrelative:gameScreen.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A84877A-6AB4-E422-F490-6011EA30690A}|screens{0A84877A-6AB4-E422-F490-6011EA30690A}|D:\\File\\app superbrain\\SuperbrainPT\\resultScreen.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{0A84877A-6AB4-E422-F490-6011EA30690A}|screens{0A84877A-6AB4-E422-F490-6011EA30690A}|solutionrelative:resultScreen.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B3DEABC7-E864-1C06-D96D-FA1041009525}|core{B3DEABC7-E864-1C06-D96D-FA1041009525}|D:\\File\\app superbrain\\SuperbrainPT\\sound.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B3DEABC7-E864-1C06-D96D-FA1041009525}|core{B3DEABC7-E864-1C06-D96D-FA1041009525}|solutionrelative:sound.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B3DEABC7-E864-1C06-D96D-FA1041009525}|core{B3DEABC7-E864-1C06-D96D-FA1041009525}|D:\\File\\app superbrain\\SuperbrainPT\\rules.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B3DEABC7-E864-1C06-D96D-FA1041009525}|core{B3DEABC7-E864-1C06-D96D-FA1041009525}|solutionrelative:rules.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B3DEABC7-E864-1C06-D96D-FA1041009525}|core{B3DEABC7-E864-1C06-D96D-FA1041009525}|D:\\File\\app superbrain\\SuperbrainPT\\utils.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B3DEABC7-E864-1C06-D96D-FA1041009525}|core{B3DEABC7-E864-1C06-D96D-FA1041009525}|solutionrelative:utils.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B3DEABC7-E864-1C06-D96D-FA1041009525}|core{B3DEABC7-E864-1C06-D96D-FA1041009525}|D:\\File\\app superbrain\\SuperbrainPT\\config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B3DEABC7-E864-1C06-D96D-FA1041009525}|core{B3DEABC7-E864-1C06-D96D-FA1041009525}|solutionrelative:config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C18A5E4-B035-AED0-99A2-557954539F5D}|css{9C18A5E4-B035-AED0-99A2-557954539F5D}|D:\\File\\app superbrain\\SuperbrainPT\\result.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9C18A5E4-B035-AED0-99A2-557954539F5D}|css{9C18A5E4-B035-AED0-99A2-557954539F5D}|solutionrelative:result.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C18A5E4-B035-AED0-99A2-557954539F5D}|css{9C18A5E4-B035-AED0-99A2-557954539F5D}|D:\\File\\app superbrain\\SuperbrainPT\\flashcard.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9C18A5E4-B035-AED0-99A2-557954539F5D}|css{9C18A5E4-B035-AED0-99A2-557954539F5D}|solutionrelative:flashcard.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C18A5E4-B035-AED0-99A2-557954539F5D}|css{9C18A5E4-B035-AED0-99A2-557954539F5D}|D:\\File\\app superbrain\\SuperbrainPT\\game.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9C18A5E4-B035-AED0-99A2-557954539F5D}|css{9C18A5E4-B035-AED0-99A2-557954539F5D}|solutionrelative:game.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C18A5E4-B035-AED0-99A2-557954539F5D}|css{9C18A5E4-B035-AED0-99A2-557954539F5D}|D:\\File\\app superbrain\\SuperbrainPT\\config.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9C18A5E4-B035-AED0-99A2-557954539F5D}|css{9C18A5E4-B035-AED0-99A2-557954539F5D}|solutionrelative:config.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C18A5E4-B035-AED0-99A2-557954539F5D}|css{9C18A5E4-B035-AED0-99A2-557954539F5D}|D:\\File\\app superbrain\\SuperbrainPT\\menu.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9C18A5E4-B035-AED0-99A2-557954539F5D}|css{9C18A5E4-B035-AED0-99A2-557954539F5D}|solutionrelative:menu.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C18A5E4-B035-AED0-99A2-557954539F5D}|css{9C18A5E4-B035-AED0-99A2-557954539F5D}|D:\\File\\app superbrain\\SuperbrainPT\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9C18A5E4-B035-AED0-99A2-557954539F5D}|css{9C18A5E4-B035-AED0-99A2-557954539F5D}|solutionrelative:main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{089100B1-113F-4E66-888A-E83F3999EAFD}|Solution Items{089100B1-113F-4E66-888A-E83F3999EAFD}|D:\\File\\app superbrain\\SuperbrainPT\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{089100B1-113F-4E66-888A-E83F3999EAFD}|Solution Items{089100B1-113F-4E66-888A-E83F3999EAFD}|solutionrelative:index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "generator.js",
+              "DocumentMoniker": "D:\\File\\app superbrain\\SuperbrainPT\\generator.js",
+              "RelativeDocumentMoniker": "generator.js",
+              "ToolTip": "D:\\File\\app superbrain\\SuperbrainPT\\generator.js",
+              "RelativeToolTip": "generator.js",
+              "ViewState": "AgIAAMEAAAAAAAAAAADwv9MAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-09-20T01:25:48.631Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "fingermath.js",
+              "DocumentMoniker": "D:\\File\\app superbrain\\SuperbrainPT\\fingermath.js",
+              "RelativeDocumentMoniker": "fingermath.js",
+              "ToolTip": "D:\\File\\app superbrain\\SuperbrainPT\\fingermath.js",
+              "RelativeToolTip": "fingermath.js",
+              "ViewState": "AgIAAB4AAAAAAAAAAADwv0EAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-09-20T01:26:27.669Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "soroban.js",
+              "DocumentMoniker": "D:\\File\\app superbrain\\SuperbrainPT\\soroban.js",
+              "RelativeDocumentMoniker": "soroban.js",
+              "ToolTip": "D:\\File\\app superbrain\\SuperbrainPT\\soroban.js",
+              "RelativeToolTip": "soroban.js",
+              "ViewState": "AgIAABoAAAAAAAAAAADwvz0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-09-20T01:26:37.613Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "navigation.js",
+              "DocumentMoniker": "D:\\File\\app superbrain\\SuperbrainPT\\navigation.js",
+              "RelativeDocumentMoniker": "navigation.js",
+              "ToolTip": "D:\\File\\app superbrain\\SuperbrainPT\\navigation.js",
+              "RelativeToolTip": "navigation.js",
+              "ViewState": "AgIAAAUAAAAAAAAAAADwvygAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-09-20T01:26:52.501Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "configScreen.js",
+              "DocumentMoniker": "D:\\File\\app superbrain\\SuperbrainPT\\configScreen.js",
+              "RelativeDocumentMoniker": "configScreen.js",
+              "ToolTip": "D:\\File\\app superbrain\\SuperbrainPT\\configScreen.js",
+              "RelativeToolTip": "configScreen.js",
+              "ViewState": "AgIAAHQAAAAAAAAAAADwv5cAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-09-20T01:27:06.227Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "gameScreen.js",
+              "DocumentMoniker": "D:\\File\\app superbrain\\SuperbrainPT\\gameScreen.js",
+              "RelativeDocumentMoniker": "gameScreen.js",
+              "ToolTip": "D:\\File\\app superbrain\\SuperbrainPT\\gameScreen.js",
+              "RelativeToolTip": "gameScreen.js",
+              "ViewState": "AgIAANgAAAAAAAAAAADwv/sAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-09-20T01:27:15.74Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "resultScreen.js",
+              "DocumentMoniker": "D:\\File\\app superbrain\\SuperbrainPT\\resultScreen.js",
+              "RelativeDocumentMoniker": "resultScreen.js",
+              "ToolTip": "D:\\File\\app superbrain\\SuperbrainPT\\resultScreen.js",
+              "RelativeToolTip": "resultScreen.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-09-20T01:27:33.018Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "app.js",
+              "DocumentMoniker": "D:\\File\\app superbrain\\SuperbrainPT\\app.js",
+              "RelativeDocumentMoniker": "app.js",
+              "ToolTip": "D:\\File\\app superbrain\\SuperbrainPT\\app.js",
+              "RelativeToolTip": "app.js",
+              "ViewState": "AgIAAAwAAAAAAAAAAADwvyMAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-09-20T01:28:01.294Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "sound.js",
+              "DocumentMoniker": "D:\\File\\app superbrain\\SuperbrainPT\\sound.js",
+              "RelativeDocumentMoniker": "sound.js",
+              "ToolTip": "D:\\File\\app superbrain\\SuperbrainPT\\sound.js",
+              "RelativeToolTip": "sound.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-09-20T01:26:01.132Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "rules.js",
+              "DocumentMoniker": "D:\\File\\app superbrain\\SuperbrainPT\\rules.js",
+              "RelativeDocumentMoniker": "rules.js",
+              "ToolTip": "D:\\File\\app superbrain\\SuperbrainPT\\rules.js",
+              "RelativeToolTip": "rules.js",
+              "ViewState": "AgIAADsAAAAAAAAAAADwv14AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-09-20T01:25:38.072Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "utils.js",
+              "DocumentMoniker": "D:\\File\\app superbrain\\SuperbrainPT\\utils.js",
+              "RelativeDocumentMoniker": "utils.js",
+              "ToolTip": "D:\\File\\app superbrain\\SuperbrainPT\\utils.js",
+              "RelativeToolTip": "utils.js",
+              "ViewState": "AgIAAAIAAAAAAAAAAADwvyUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-09-20T01:26:11.363Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "config.js",
+              "DocumentMoniker": "D:\\File\\app superbrain\\SuperbrainPT\\config.js",
+              "RelativeDocumentMoniker": "config.js",
+              "ToolTip": "D:\\File\\app superbrain\\SuperbrainPT\\config.js",
+              "RelativeToolTip": "config.js",
+              "ViewState": "AgIAACAAAAAAAAAAAADwv0MAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-09-20T01:25:25.366Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "result.css",
+              "DocumentMoniker": "D:\\File\\app superbrain\\SuperbrainPT\\result.css",
+              "RelativeDocumentMoniker": "result.css",
+              "ToolTip": "D:\\File\\app superbrain\\SuperbrainPT\\result.css",
+              "RelativeToolTip": "result.css",
+              "ViewState": "AgIAAGsAAAAAAAAAAAAmwJAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-09-20T01:24:18.572Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "flashcard.css",
+              "DocumentMoniker": "D:\\File\\app superbrain\\SuperbrainPT\\flashcard.css",
+              "RelativeDocumentMoniker": "flashcard.css",
+              "ToolTip": "D:\\File\\app superbrain\\SuperbrainPT\\flashcard.css",
+              "RelativeToolTip": "flashcard.css",
+              "ViewState": "AgIAAKwAAAAAAAAAAAAmwNEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-09-20T01:24:07.629Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "game.css",
+              "DocumentMoniker": "D:\\File\\app superbrain\\SuperbrainPT\\game.css",
+              "RelativeDocumentMoniker": "game.css",
+              "ToolTip": "D:\\File\\app superbrain\\SuperbrainPT\\game.css",
+              "RelativeToolTip": "game.css",
+              "ViewState": "AgIAAJsBAAAAAAAAAAAmwMABAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-09-20T01:23:55.086Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "config.css",
+              "DocumentMoniker": "D:\\File\\app superbrain\\SuperbrainPT\\config.css",
+              "RelativeDocumentMoniker": "config.css",
+              "ToolTip": "D:\\File\\app superbrain\\SuperbrainPT\\config.css",
+              "RelativeToolTip": "config.css",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAmwLoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-09-20T01:23:44.233Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "menu.css",
+              "DocumentMoniker": "D:\\File\\app superbrain\\SuperbrainPT\\menu.css",
+              "RelativeDocumentMoniker": "menu.css",
+              "ToolTip": "D:\\File\\app superbrain\\SuperbrainPT\\menu.css",
+              "RelativeToolTip": "menu.css",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAmwHEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-09-20T01:23:32.235Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "main.css",
+              "DocumentMoniker": "D:\\File\\app superbrain\\SuperbrainPT\\main.css",
+              "RelativeDocumentMoniker": "main.css",
+              "ToolTip": "D:\\File\\app superbrain\\SuperbrainPT\\main.css",
+              "RelativeToolTip": "main.css",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAmwLUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-09-20T01:23:18.69Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "index.html",
+              "DocumentMoniker": "D:\\File\\app superbrain\\SuperbrainPT\\index.html",
+              "RelativeDocumentMoniker": "index.html",
+              "ToolTip": "D:\\File\\app superbrain\\SuperbrainPT\\index.html",
+              "RelativeToolTip": "index.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIBAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-09-20T01:22:49.361Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

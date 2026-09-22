@@ -1,0 +1,479 @@
+﻿/* ============================================================
+   GAME CSS — Màn hình game
+   - Nền khung: XANH LÁ (#65a343)
+   - Số hiển thị TO x3 (228px)
+   - Bỏ animation token
+   - Flashcard + Soroban đều chuyển nền TRẮNG khi trả lời
+   - Dấu ✓/✗ nằm TRONG khung (thay thế vị trí dấu =)
+   ============================================================ */
+
+/* ============ GAME HEADER ============ */
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.game-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.score-inline {
+  font-size: 15px;
+  font-weight: 700;
+  color: #667eea;
+  padding: 8px 16px;
+  background: #f5f7ff;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.score-inline .score-num {
+  color: #22c55e;
+  font-size: 17px;
+}
+
+.score-inline .score-sep {
+  color: #cbd5e1;
+  margin: 0 3px;
+}
+
+.score-inline .streak-num {
+  color: #f59e0b;
+}
+
+.level-tag {
+  background: linear-gradient(135deg, #65a343, #4a8b35);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.progress-info {
+  font-size: 14px;
+  color: #888;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* ============ KHUNG — NỀN XANH LÁ ============ */
+.question-box {
+  background: linear-gradient(135deg, #65a343, #4a8b35);
+  border-radius: 20px;
+  padding: 40px 32px;
+  text-align: center;
+  margin-bottom: 16px;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main-display {
+  color: #fff;
+  font-size: 228px;
+  font-weight: 900;
+  letter-spacing: 8px;
+  line-height: 1;
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+/* Token — đã bỏ animation */
+.main-display .token {
+  display: inline-block;
+}
+
+/* ============================================================
+   CHUYỂN NỀN KHI TRẢ LỜI — Áp dụng cho TẤT CẢ khung
+   Bao gồm: khung thường, flashcard, soroban-flash
+   ============================================================ */
+.question-box.answer-reveal,
+.question-box.flashcard.answer-reveal,
+.question-box.soroban-flash.answer-reveal {
+  background: #ffffff !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.question-box.answer-reveal .main-display,
+.question-box.flashcard.answer-reveal .main-display,
+.question-box.soroban-flash.answer-reveal .main-display {
+  color: #333 !important;
+  text-shadow: none;
+}
+
+/* ============ LOADING ============ */
+.loading-spinner {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #fff;
+}
+
+.loading-spinner.show {
+  display: flex;
+}
+
+.spinner {
+  width: 52px;
+  height: 52px;
+  border: 5px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  opacity: 0.9;
+}
+
+/* ============ START OVERLAY — NỀN XANH LÁ ============ */
+.start-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, #65a343, #4a8b35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  z-index: 10;
+  border-radius: 20px;
+}
+
+.start-overlay.hidden {
+  display: none;
+}
+
+.start-title {
+  color: #fff;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  animation: pulseText 2s ease-in-out infinite;
+}
+
+@keyframes pulseText {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+.btn-start {
+  padding: 22px 56px;
+  background: linear-gradient(180deg, #ffd93d, #f5c518);
+  border: none;
+  border-radius: 20px;
+  font-size: 26px;
+  font-weight: 900;
+  color: #2d5016;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(245, 197, 24, 0.5);
+  transition: all 0.2s;
+  letter-spacing: 3px;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-start:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 14px 36px rgba(245, 197, 24, 0.7);
+}
+
+.btn-start:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ============ PAST BOX ============ */
+.past-wrapper {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.btn-show-past {
+  position: absolute;
+  top: -10px;
+  right: 0;
+  padding: 10px 22px;
+  background: linear-gradient(180deg, #6ab04c, #4a8b35);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  z-index: 2;
+  font-family: inherit;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+}
+
+.btn-show-past:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+
+.btn-show-past.active {
+  background: linear-gradient(180deg, #f093fb, #f5576c);
+}
+
+.past-display {
+  background: #f9fafb;
+  border: 2px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 0 18px;
+  padding-right: 120px;
+  min-height: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+  letter-spacing: 1px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s;
+  opacity: 0;
+  pointer-events: none;
+  max-height: 0;
+  overflow: hidden;
+  margin-top: -10px;
+}
+
+.past-display.show {
+  opacity: 1;
+  pointer-events: auto;
+  max-height: 240px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  margin-top: 0;
+}
+
+.past-display .token-past {
+  background: #eef1ff;
+  color: #667eea;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+/* ============ INPUT ĐÁP ÁN ============ */
+.answer-input {
+  width: 100%;
+  padding: 22px;
+  font-size: 34px;
+  font-weight: 700;
+  text-align: center;
+  border: 3px solid #e0e5ff;
+  border-radius: 16px;
+  outline: none;
+  transition: all 0.2s;
+  color: #333;
+}
+
+.answer-input:focus {
+  border-color: #65a343;
+  box-shadow: 0 0 0 4px rgba(101, 163, 67, 0.15);
+}
+
+.answer-input:disabled {
+  background: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.buttons {
+  display: flex;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+/* ============ FEEDBACK ============ */
+.feedback {
+  text-align: center;
+  font-size: 17px;
+  font-weight: 700;
+  margin-top: 12px;
+  min-height: 24px;
+}
+
+.feedback.correct { color: #22c55e; }
+.feedback.wrong { color: #ef4444; }
+
+/* ============ TIMER BAR ============ */
+.timer-bar {
+  height: 8px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+
+.timer-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #65a343, #4a8b35);
+  width: 100%;
+  transition: width 0.1s linear;
+}
+
+.timer-bar.flash {
+  background: #fff5cc;
+}
+
+.timer-bar.flash .timer-fill {
+  background: linear-gradient(90deg, #f5c518, #ff9f1c);
+}
+
+/* ============================================================
+   OVERLAY ĐÚNG/SAI — Đặt TRONG khung, thay thế vị trí dấu =
+   ============================================================ */
+
+.answer-overlay {
+  position: absolute;          /* ← Absolute trong khung, không phải fixed */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 20;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.answer-overlay.show {
+  opacity: 1;
+  animation: overlayPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.answer-overlay img {
+  width: 260px;
+  height: 260px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 32px rgba(0,0,0,0.3));
+}
+
+@keyframes overlayPop {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1000px) {
+  .main-display {
+    font-size: 160px;
+    letter-spacing: 5px;
+    min-height: 200px;
+  }
+  .question-box {
+    min-height: 360px;
+    padding: 32px 24px;
+  }
+  .answer-overlay img {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-display {
+    font-size: 120px;
+    letter-spacing: 4px;
+    min-height: 150px;
+  }
+  .question-box {
+    min-height: 300px;
+    padding: 28px 20px;
+  }
+  .answer-input {
+    font-size: 28px;
+    padding: 18px;
+  }
+  .start-title { font-size: 24px; }
+  .btn-start {
+    padding: 18px 44px;
+    font-size: 22px;
+  }
+  .answer-overlay img {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-display {
+    font-size: 84px;
+    letter-spacing: 3px;
+    min-height: 110px;
+  }
+  .question-box {
+    min-height: 240px;
+    padding: 24px 16px;
+  }
+  .answer-input {
+    font-size: 22px;
+    padding: 14px;
+  }
+  .score-inline {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  .level-tag {
+    font-size: 10px;
+    padding: 6px 12px;
+  }
+  .start-title { font-size: 20px; }
+  .btn-start {
+    padding: 14px 32px;
+    font-size: 18px;
+    gap: 6px;
+  }
+  .start-overlay { gap: 20px; }
+  .answer-overlay img {
+    width: 140px;
+    height: 140px;
+  }
+}

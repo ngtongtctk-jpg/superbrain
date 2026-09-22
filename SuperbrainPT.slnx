@@ -1,0 +1,39 @@
+<Solution>
+  <Folder Name="/assets/" />
+  <Folder Name="/assets/css/">
+    <File Path="config.css" />
+    <File Path="flashcard.css" />
+    <File Path="game.css" />
+    <File Path="main.css" />
+    <File Path="menu.css" />
+    <File Path="result.css" />
+  </Folder>
+  <Folder Name="/assets/data/" />
+  <Folder Name="/assets/js/">
+    <File Path="app.js" />
+  </Folder>
+  <Folder Name="/assets/js/core/">
+    <File Path="config.js" />
+    <File Path="generator.js" />
+    <File Path="rules.js" />
+    <File Path="sound.js" />
+    <File Path="utils.js" />
+  </Folder>
+  <Folder Name="/assets/js/modes/">
+    <File Path="fingermath.js" />
+    <File Path="soroban.js" />
+  </Folder>
+  <Folder Name="/assets/js/screens/">
+    <File Path="configScreen.js" />
+    <File Path="gameScreen.js" />
+    <File Path="navigation.js" />
+    <File Path="resultScreen.js" />
+  </Folder>
+  <Folder Name="/fingermath/" />
+  <Folder Name="/icon/" />
+  <Folder Name="/music/" />
+  <Folder Name="/Solution Items/">
+    <File Path="index.html" />
+  </Folder>
+  <Folder Name="/soroban/" />
+</Solution>
